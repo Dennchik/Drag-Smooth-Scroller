@@ -4,142 +4,111 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="css/style.css" rel="stylesheet" type="text/css" />
-	<script defer="defer" type="text/javascript"
-		src="https://assets.codepen.io/16327/gsap-latest-beta.min.js?r=v3.11.3"></script>
+	<link href="css/style-split.css" rel="stylesheet" type="text/css" />
+	<!-- <script defer="defer" type="text/javascript" src="https://assets.codepen.io/16327/gsap-latest-beta.min.js"></script> -->
+	<!-- <script defer="defer" type="text/javascript" src="js/lib/gsap.js"></script> -->
+	<script defer="defer" type="text/javascript" src="js/lib/gsap-latest.js"></script>
 	<script defer="defer" type="text/javascript" src="js/lib/ScrollTrigger.js"></script>
-	<script defer="defer" type="text/javascript"
-		src="https://codepen.io/GreenSock/pen/7ba936b34824fefdccfe2c6d9f0b740b.js"></script>
-	<script defer="defer" type="text/javascript"
-		src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=css&amp;skin=sunburst"></script>
+	<script defer="defer" type="text/javascript" src="js/lib/SplitText.js">
+
+	</script>
+	<!-- <script defer="defer" type="text/javascript"
+		src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/SplitText3.min.js"></script> -->
 	<script defer="defer" type="text/javascript" src="js/lib/ScrollToPlugin.js"></script>
-	<script defer="defer" type="text/javascript" src="js/lib/Observer.js"></script>
-	<script defer="defer" type="text/javascript" src="js/lib/ScrollSmoother.js"></script>
-
-
-	<script defer="defer" type="text/javascript" src="js/js.js"></script>
+	<script defer="defer" type="text/javascript" src="js/lib/TextPlugin.js"></script>
+	<script defer="defer" type="text/javascript" src="js/js-split.js"></script>
 	<title>Document</title>
 </head>
 
 <body>
-	<div id="smooth-wrapper">
-		<div id="smooth-content">
-			<div class="description">
-				<div>
-					<h1>Horizontal "<code>containerAnimation</code>"</h1>
-					<p>Scroll this page vertically and you'll see a horizontal fake-scrolling section where a container is
-						animated
-						on the x-axis using a ScrollTrigger animation. With <code>containerAnimation</code> you can trigger
-						animations
-						when certain elements <i>inside</i> that container enter the viewport horizontally! It's like a
-						ScrollTrigger
-						inside of a ScrollTrigger. 🤯
-					</p>
-				</div>
-				<div class="scroll-down">Scroll down<div class="arrow"></div>
-				</div>
-			</div>
-
-			<div class="container">
-
-				<div class="panel blue">
-					Scroll down to animate horizontally &gt;
-				</div>
-
-				<section class="panel red">
-					<div>
-						<pre class="code-block prettyprint lang-js linenums">gsap.to(".box-1", {
-  y: -130,
-  duration: 2,
-  ease: "elastic",
-  scrollTrigger: {
-    trigger: ".box-1",
-    containerAnimation: scrollTween,
-    start: "left center",
-    toggleActions: "play none none reset"
-  }
-});
-						</pre>
-						Fire an animation at a particular spot...
+	<section class="slide">
+		<div class="slide__outer">
+			<div class="slide__inner">
+				<div class="slide__content">
+					<div class="slide__container">
+						<h2 class="slide__heading">SCROLL</h2>
+						<figure class="slide__img-cont">
+							<img class="slide__img"
+								src='https://images.unsplash.com/photo-1567016376408-0226e4d0c1ea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0NjMyMDUzOA&ixlib=rb-1.2.1&q=80&w=400'
+								alt=''>
+						</figure>
 					</div>
-					<div class="box-1 box">box-1</div>
-				</section>
-
-				<section class="panel gray">
-					<div>
-						<pre class="code-block prettyprint lang-js linenums">gsap.to(".box-2", {
-  y: -120,
-  backgroundColor: "#1e90ff",
-  ease: "none",
-  scrollTrigger: {
-    trigger: ".box-2",
-    containerAnimation: scrollTween,
-    start: "center 80%",
-    end: "center 20%",
-    scrub: true
-  }
-});</pre>
-						...or scrub it back &amp; forth with the scrollbar
-					</div>
-					<div class="box-2 box">box-2</div>
-				</section>
-				<section class="panel purple">
-					<div>
-						<pre class="code-block prettyprint lang-js linenums">ScrollTrigger.create({
-  trigger: ".box-3",
-  containerAnimation: scrollTween,
-  toggleClass: "active",
-  start: "center 60%"
-});</pre>
-						Toggle a CSS class
-					</div>
-					<div class="box-3 box">box-3</div>
-				</section>
-				<section class="panel green">
-					<div>
-						<pre class="code-block prettyprint lang-js linenums">ScrollTrigger.create({
-  trigger: ".green",
-  containerAnimation: scrollTween,
-  start: "center 65%",
-  end: "center 51%",
-  onEnter: () => console.log("enter"),
-  onLeave: () => console.log("leave"),
-  onEnterBack: () => console.log("enterBack"),
-  onLeaveBack: () => console.log("leaveBack"),
-  onToggle: self => console.log("active", self.isActive)
-});					
-</pre>
-						Use the rich callback system
-					</div>
-				</section>
-			</div>
-
-			<div class="final">
-				<div>
-					<h1>Wasn't that fun?</h1>
-					<p>Here are a few caveats to keep in mind:</p>
-					<ul>
-						<li>The fake-scrolling animation (just the part that's moving the container horizontally) must have no
-							easing
-							(<code>ease: "none"</code>).</li>
-						<li>Pinning and snapping won't work on ScrollTriggers with a <code>containerAnimation</code>.</li>
-						<li>The mapping of scroll position trigger points are based on the trigger element itself not being animated
-							horizontally (inside the container). If you need to animate the trigger, you can either wrap it in a
-							&lt;div&gt; and use that as the trigger instead or just factor the trigger's movement into your end
-							position. For example, if you animate it left 100px, make the <code>end</code> 100px further to the left.
-						</li>
-						<li>Requires ScrollTrigger 3.8.0 or later</li>
-					</ul>
 				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 
-	<header>
-		<a href="https://greensock.com/scrolltrigger">
-			<img class="greensock-icon" src="https://assets.codepen.io/16327/gsap-logo-light.svg" width="200" height="64">
-		</a>
-	</header>
+	<section class="slide">
+		<div class="slide__outer">
+			<div class="slide__inner">
+				<div class="slide__content">
+					<div class="slide__container">
+						<h2 class="slide__heading">SWIPE</h2>
+						<figure class="slide__img-cont">
+							<img class="slide__img"
+								src='https://images.unsplash.com/photo-1558603668-6570496b66f8?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0NjMyMDUzOA&ixlib=rb-1.2.1&q=85&w=400'
+								alt=''>
+						</figure>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div class="slide__outer">
+			<div class="slide__inner">
+				<div class="slide__content">
+					<div class="slide__container">
+						<h2 class="slide__heading">SCROLL</h2>
+						<figure class="slide__img-cont">
+							<img class="slide__img"
+								src='https://images.unsplash.com/photo-1537165924986-cc3568f5d454?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0NjMyMDU4NA&ixlib=rb-1.2.1&q=85&w=400'
+								alt=''>
+						</figure>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div class="slide__outer">
+			<div class="slide__inner">
+				<div class="slide__content">
+					<div class="slide__container">
+						<h2 class="slide__heading">SWIPE</h2>
+						<figure class="slide__img-cont">
+							<img class="slide__img"
+								src='https://images.unsplash.com/photo-1589271243958-d61e12b61b97?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0NjMyMDU4NA&ixlib=rb-1.2.1&q=80&w=400'
+								alt=''>
+						</figure>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="overlay">
+		<div class="overlay__content">
+			<p class="overlay__count">0<span class="count">1</span></p>
+			<figure class="overlay__img-cont">
+				<img class="image"
+					src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0NjMxOTU4Mw&ixlib=rb-1.2.1&q=80&w=800" />
+				<img class="image"
+					src="https://images.unsplash.com/photo-1594666757003-3ee20de41568?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0NjMxOTcwOA&ixlib=rb-1.2.1&q=80&w=800" />
+				<img class="image"
+					src="https://images.unsplash.com/photo-1579830341096-05f2f31b8259?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0NjMxOTQ5Ng&ixlib=rb-1.2.1&q=80&w=800" />
+				<img class="image"
+					src="https://images.unsplash.com/photo-1603771628302-c32c88e568e3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0NjMxOTUxNg&ixlib=rb-1.2.1&q=80&w=800" />
+			</figure>
+		</div>
+	</section>
+
+	<footer>
+		<a href="https://greensock.com/docs/v3/Plugins/ScrollTrigger/static.observe()">ScrollTrigger.observe()</a>
+		<p>GSAP demo</p>
+	</footer>
 </body>
 
 </html>
