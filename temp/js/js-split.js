@@ -109,7 +109,7 @@ function gotoSection(index, direction) {
 Observer.create({
 	type: "wheel,touch,pointer",
 	preventDefault: true,
-	wheelSpeed: -10,
+	wheelSpeed: -1,
 	onUp: () => {
 		console.log("down");
 		if (animating) return;
@@ -120,7 +120,7 @@ Observer.create({
 		if (animating) return;
 		gotoSection(currentIndex - 1, -1);
 	},
-	tolerance: 5
+	tolerance: 10
 });
 
 document.addEventListener("keydown", logKey);
