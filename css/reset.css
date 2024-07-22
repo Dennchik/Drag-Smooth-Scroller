@@ -1,0 +1,40 @@
+html,
+body {
+  margin: 0;
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+  font-family: "Signika Negative", sans-serif, Arial;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+h1,
+h2,
+p,
+li {
+  max-width: 800px;
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+  border: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  scrollbar-width: thin;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+img {
+  vertical-align: top;
+}/*# sourceMappingURL=reset.css.map */

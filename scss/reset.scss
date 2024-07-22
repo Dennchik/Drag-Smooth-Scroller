@@ -1,0 +1,48 @@
+html,
+body {
+	margin: 0;
+	//
+	-webkit-overflow-scrolling: touch;
+	overflow-scrolling: touch;
+	font-family: 'Signika Negative', sans-serif, Arial;
+}
+
+body {
+	overflow-x: hidden;
+	overflow-y: scroll;
+	height: 100%;
+}
+
+h1,
+h2,
+p,
+li {
+	max-width: 800px;
+}
+
+* {
+	padding: 0px;
+	margin: 0px;
+	border: none;
+	box-sizing: border-box;
+	scrollbar-width: thin;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+img {
+	vertical-align: top;
+}
+// -----------------------------------------------------------------------------
+// .wrapper {
+// 	position: relative;
+// 	display: flex;
+// 	flex-direction: column;
+// 	min-height: 100vh;
+// 	margin: 0 auto;
+// 	border: 3px solid red;
+// }
